@@ -41,4 +41,3 @@ Setelah setiap proses indikator selesai, LED dan buzzer akan kembali mati.
 - Pasang resistor pada masing-masing LED.
 - Pastikan semua komponen terhubung dengan benar.
 - Sistem menggunakan ESP32-C3 Super Mini dengan konektor USB Type-C.
-- 
