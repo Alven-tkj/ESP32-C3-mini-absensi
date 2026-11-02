@@ -1,24 +1,44 @@
-/*
- * =================================================================================
- * ABSENSI SEKOLAH - ESP32-C3 SUPER MINI (USB-C) + RFID RC522 + 2 LED + BUZZER AKTIF
- * Tanpa LCD. Protokol server sama dengan program lama (ESP32 DevKit V1).
- * =================================================================================
- * PIN:
- *  RC522 : SS(SDA) -> GPIO5, SCK -> GPIO6, MISO -> GPIO7, MOSI -> GPIO10,
- *          RST -> GPIO4, VCC -> 3.3V (WAJIB 3.3V), GND -> GND
- *  LED hijau -> resistor -> GPIO0 -> GND
- *  LED merah -> resistor -> GPIO1 -> GND
- *  Buzzer aktif (+) -> GPIO3, (-) -> GND
- *
- * Pin strapping ESP32-C3 adalah GPIO2, GPIO8, GPIO9 (tidak dipakai di sini).
- * GPIO20/21 = UART, GPIO8 = LED onboard, GPIO9 = tombol BOOT (tidak dipakai).
- *
- * POLA INDIKATOR:
- *  Berhasil   : LED hijau 0,4 detik + 1x bip pendek (150 ms)
- *  Peringatan : kedua LED kedip 2x + 2x bip pendek (COOLDOWN / ALREADY_COMPLETED)
- *  Gagal      : LED merah 0,7 detik + 1x bip panjang (400 ms)
- *  Offline    : LED merah MENYALA TERUS selama Wi-Fi belum tersambung
- *  Online     : LED hijau kedip + 3x bip pendek, lalu merah padam
- *  Semua indikator dimatikan setelah selesai.
- * =================================================================================
- */
+# Absensi Sekolah Berbasis RFID
+
+Sistem absensi sekolah menggunakan ESP32-C3 Super Mini, RFID RC522, dua LED indikator, dan buzzer aktif. Sistem ini tidak menggunakan LCD dan tetap menggunakan protokol server dari program sebelumnya.
+
+## Komponen dan Pin
+
+### RFID RC522
+| Pin RFID | Pin ESP32-C3 |
+|---|---|
+| SDA | GPIO 5 |
+| SCK | GPIO 6 |
+| MISO | GPIO 7 |
+| MOSI | GPIO 10 |
+| RST | GPIO 4 |
+| VCC | 3.3V |
+| GND | GND |
+
+### LED dan Buzzer
+| Komponen | Pin ESP32-C3 |
+|---|---|
+| LED Hijau | GPIO 0 |
+| LED Merah | GPIO 1 |
+| Buzzer Aktif (+) | GPIO 3 |
+| Buzzer Aktif (-) | GND |
+
+## Indikator Sistem
+
+| Kondisi | Indikator |
+|---|---|
+| Berhasil | LED hijau menyala 0,4 detik dan buzzer berbunyi 1 kali |
+| Peringatan | Kedua LED berkedip 2 kali dan buzzer berbunyi 2 kali |
+| Gagal | LED merah menyala 0,7 detik dan buzzer berbunyi panjang |
+| Offline | LED merah menyala selama Wi-Fi belum terhubung |
+| Online | LED hijau berkedip dan buzzer berbunyi 3 kali |
+
+Setelah setiap proses indikator selesai, LED dan buzzer akan kembali mati.
+
+## Catatan
+
+- Gunakan tegangan 3.3V untuk RFID RC522.
+- Pasang resistor pada masing-masing LED.
+- Pastikan semua komponen terhubung dengan benar.
+- Sistem menggunakan ESP32-C3 Super Mini dengan konektor USB Type-C.
+- 
